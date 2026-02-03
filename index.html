@@ -882,6 +882,12 @@
             border: 2px solid var(--border-color);
             cursor: pointer;
             transition: all 0.2s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quiz-option * {
+            pointer-events: none;
         }
 
         .quiz-option:hover {
@@ -2554,6 +2560,14 @@
                 document.querySelectorAll('.category-chip').forEach(c => c.classList.remove('active'));
                 this.classList.add('active');
             });
+        });
+
+        // Event delegation for quiz options (backup for inline onclick)
+        document.addEventListener('click', function(e) {
+            const quizOption = e.target.closest('.quiz-option');
+            if (quizOption && quizOption.hasAttribute('onclick')) {
+                console.log('Quiz option clicked via delegation:', quizOption);
+            }
         });
 
         // ==================== ONBOARDING ====================
