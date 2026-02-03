@@ -2230,7 +2230,7 @@
                     <div class="article-cta">
                         <h3>Were you in an accident?</h3>
                         <p>Get a free case evaluation in 2 minutes</p>
-                        <button onclick="switchTab('claim'); hideArticle();">Start My Claim Review</button>
+                        <button onclick="startQuizWithTopic('car-accident')">Start My Claim Review</button>
                     </div>
                 </div>
 
@@ -2270,7 +2270,7 @@
                     <div class="article-cta">
                         <h3>Have your documents ready?</h3>
                         <p>Let us review your case for free</p>
-                        <button onclick="switchTab('claim'); hideArticle();">Start My Claim Review</button>
+                        <button onclick="startQuizWithTopic('injury')">Start My Claim Review</button>
                     </div>
                 </div>
 
@@ -2329,7 +2329,7 @@
                     <div class="article-cta">
                         <h3>Stuck with a lemon?</h3>
                         <p>Find out if you qualify for a buyback</p>
-                        <button onclick="switchTab('claim'); hideArticle();">Check My Vehicle</button>
+                        <button onclick="startQuizWithTopic('lemon')">Check My Vehicle</button>
                     </div>
                 </div>
 
@@ -2382,7 +2382,7 @@
                     <div class="article-cta">
                         <h3>Insurance treating you unfairly?</h3>
                         <p>Find out if you have a bad faith claim</p>
-                        <button onclick="switchTab('claim'); hideArticle();">Review My Claim</button>
+                        <button onclick="startQuizWithTopic('insurance')">Review My Claim</button>
                     </div>
                 </div>
 
@@ -2438,7 +2438,7 @@
                     <div class="article-cta">
                         <h3>Don't miss your deadline</h3>
                         <p>Get a free case evaluation today</p>
-                        <button onclick="switchTab('claim'); hideArticle();">Check My Deadline</button>
+                        <button onclick="startQuizWithTopic('other')">Check My Deadline</button>
                     </div>
                 </div>
             </div>
@@ -2641,6 +2641,26 @@
             document.getElementById('onboarding').classList.add('hidden');
         }
 
+        // Start quiz with a specific topic pre-selected (for article CTAs)
+        function startQuizWithTopic(topic) {
+            // Hide any open article
+            hideArticle();
+
+            // Hide onboarding if visible
+            document.getElementById('onboarding').classList.add('hidden');
+
+            // Store the topic as step 1 answer
+            quizAnswers.step1 = topic;
+
+            // Switch to claim tab
+            switchTab('claim');
+
+            // Go directly to step 2
+            setTimeout(() => {
+                goToStep(2);
+            }, 100);
+        }
+
         // Modal functions
         function showChatModal() {
             document.getElementById('chat-modal').classList.add('active');
@@ -2753,7 +2773,7 @@
         <div class="article-cta">
             <h3>Injured? Let's Talk.</h3>
             <p>Get your free case evaluation today</p>
-            <button onclick="switchTab('claim'); hideArticle();">Start My Claim Review</button>
+            <button onclick="startQuizWithTopic('injury')">Start My Claim Review</button>
         </div>
     </div>
 
@@ -2802,7 +2822,7 @@
         <div class="article-cta">
             <h3>Injured on someone's property?</h3>
             <p>Free consultation—we'll review your case</p>
-            <button onclick="switchTab('claim'); hideArticle();">Start My Claim Review</button>
+            <button onclick="startQuizWithTopic('slip-fall')">Start My Claim Review</button>
         </div>
     </div>
 
@@ -2851,7 +2871,7 @@
         <div class="article-cta">
             <h3>Property damage dispute?</h3>
             <p>We'll help you get fair compensation</p>
-            <button onclick="switchTab('claim'); hideArticle();">Start My Claim Review</button>
+            <button onclick="startQuizWithTopic('property')">Start My Claim Review</button>
         </div>
     </div>
 
@@ -2899,7 +2919,7 @@
         <div class="article-cta">
             <h3>Insurance treating you unfairly?</h3>
             <p>We'll hold them accountable</p>
-            <button onclick="switchTab('claim'); hideArticle();">Start My Claim Review</button>
+            <button onclick="startQuizWithTopic('insurance')">Start My Claim Review</button>
         </div>
     </div>
 
@@ -2951,7 +2971,7 @@
         <div class="article-cta">
             <h3>Stuck with a lemon?</h3>
             <p>Find out if you qualify for a buyback</p>
-            <button onclick="switchTab('claim'); hideArticle();">Check My Vehicle</button>
+            <button onclick="startQuizWithTopic('lemon')">Check My Vehicle</button>
         </div>
     </div>
 </body>
