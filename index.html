@@ -1443,6 +1443,144 @@
         .onboarding-option.full-width .icon {
             margin-bottom: 0;
         }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            padding: 20px;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 24px;
+            padding: 32px 24px;
+            max-width: 340px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 4px;
+            line-height: 1;
+        }
+
+        .modal-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .modal-content h2 {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .modal-content > p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .modal-hours {
+            background: var(--bg-secondary);
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--border-light);
+            border-radius: 12px;
+            font-size: 15px;
+            margin-bottom: 16px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .modal-input:focus {
+            border-color: var(--primary);
+        }
+
+        .modal-btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 10px;
+        }
+
+        .modal-btn.primary {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: white;
+            border: none;
+        }
+
+        .modal-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.35);
+        }
+
+        .modal-btn.secondary {
+            background: white;
+            color: var(--text-secondary);
+            border: 2px solid var(--border-light);
+        }
+
+        .modal-help {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        .modal-help a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -1802,9 +1940,9 @@
                     </div>
                     <div class="quick-actions">
                         <div class="quick-action" onclick="switchTab('contact')"><div class="quick-action-icon"><svg style="width: 26px; height: 26px; color: white;"><use href="#icon-phone"/></svg></div><h4>Call Now</h4><p>Talk to us</p></div>
-                        <div class="quick-action"><div class="quick-action-icon"><svg style="width: 26px; height: 26px; color: white;"><use href="#icon-chat"/></svg></div><h4>Live Chat</h4><p>Instant help</p></div>
+                        <div class="quick-action" onclick="showChatModal()"><div class="quick-action-icon"><svg style="width: 26px; height: 26px; color: white;"><use href="#icon-chat"/></svg></div><h4>Live Chat</h4><p>Instant help</p></div>
                         <div class="quick-action" onclick="switchTab('learn')"><div class="quick-action-icon"><svg style="width: 26px; height: 26px; color: white;"><use href="#icon-book"/></svg></div><h4>Guides</h4><p>Free resources</p></div>
-                        <div class="quick-action"><div class="quick-action-icon"><svg style="width: 26px; height: 26px; color: white;"><use href="#icon-location"/></svg></div><h4>Track Case</h4><p>Status updates</p></div>
+                        <div class="quick-action" onclick="showTrackCaseModal()"><div class="quick-action-icon"><svg style="width: 26px; height: 26px; color: white;"><use href="#icon-location"/></svg></div><h4>Track Case</h4><p>Status updates</p></div>
                     </div>
 
                     <div class="section-header">
@@ -1812,11 +1950,11 @@
                         <span class="section-link">See All <svg style="width: 12px; height: 12px;"><use href="#icon-chevron"/></svg></span>
                     </div>
 
-                    <div class="practice-card"><div class="practice-icon"><svg style="width: 28px; height: 28px; color: white;"><use href="#icon-injury"/></svg></div><div class="practice-info"><h4>Personal Injury <span class="badge-primary"><svg style="width: 10px; height: 10px; color: white;"><use href="#icon-star"/></svg> Top</span></h4><p>Accidents, negligence, pain & suffering</p></div><span class="chevron"><svg style="width: 18px; height: 18px;"><use href="#icon-chevron"/></svg></span></div>
-                    <div class="practice-card"><div class="practice-icon"><svg style="width: 28px; height: 28px; color: white;"><use href="#icon-building"/></svg></div><div class="practice-info"><h4>Premises Liability</h4><p>Slip & fall, unsafe properties</p></div><span class="chevron"><svg style="width: 18px; height: 18px;"><use href="#icon-chevron"/></svg></span></div>
-                    <div class="practice-card"><div class="practice-icon"><svg style="width: 28px; height: 28px; color: white;"><use href="#icon-car"/></svg></div><div class="practice-info"><h4>Property Damage</h4><p>Vehicle damage, total loss claims</p></div><span class="chevron"><svg style="width: 18px; height: 18px;"><use href="#icon-chevron"/></svg></span></div>
-                    <div class="practice-card"><div class="practice-icon"><svg style="width: 28px; height: 28px; color: white;"><use href="#icon-shield"/></svg></div><div class="practice-info"><h4>Insurance Bad Faith</h4><p>Denied claims, lowball offers</p></div><span class="chevron"><svg style="width: 18px; height: 18px;"><use href="#icon-chevron"/></svg></span></div>
-                    <div class="practice-card"><div class="practice-icon"><svg style="width: 28px; height: 28px; color: white;"><use href="#icon-lemon"/></svg></div><div class="practice-info"><h4>Lemon Law</h4><p>Defective vehicles, buybacks</p></div><span class="chevron"><svg style="width: 18px; height: 18px;"><use href="#icon-chevron"/></svg></span></div>
+                    <div class="practice-card" onclick="showArticle('pa-personal-injury')"><div class="practice-icon"><svg style="width: 28px; height: 28px; color: white;"><use href="#icon-injury"/></svg></div><div class="practice-info"><h4>Personal Injury <span class="badge-primary"><svg style="width: 10px; height: 10px; color: white;"><use href="#icon-star"/></svg> Top</span></h4><p>Accidents, negligence, pain & suffering</p></div><span class="chevron"><svg style="width: 18px; height: 18px;"><use href="#icon-chevron"/></svg></span></div>
+                    <div class="practice-card" onclick="showArticle('pa-premises-liability')"><div class="practice-icon"><svg style="width: 28px; height: 28px; color: white;"><use href="#icon-building"/></svg></div><div class="practice-info"><h4>Premises Liability</h4><p>Slip & fall, unsafe properties</p></div><span class="chevron"><svg style="width: 18px; height: 18px;"><use href="#icon-chevron"/></svg></span></div>
+                    <div class="practice-card" onclick="showArticle('pa-property-damage')"><div class="practice-icon"><svg style="width: 28px; height: 28px; color: white;"><use href="#icon-car"/></svg></div><div class="practice-info"><h4>Property Damage</h4><p>Vehicle damage, total loss claims</p></div><span class="chevron"><svg style="width: 18px; height: 18px;"><use href="#icon-chevron"/></svg></span></div>
+                    <div class="practice-card" onclick="showArticle('pa-insurance-bad-faith')"><div class="practice-icon"><svg style="width: 28px; height: 28px; color: white;"><use href="#icon-shield"/></svg></div><div class="practice-info"><h4>Insurance Bad Faith</h4><p>Denied claims, lowball offers</p></div><span class="chevron"><svg style="width: 18px; height: 18px;"><use href="#icon-chevron"/></svg></span></div>
+                    <div class="practice-card" onclick="showArticle('pa-lemon-law')"><div class="practice-icon"><svg style="width: 28px; height: 28px; color: white;"><use href="#icon-lemon"/></svg></div><div class="practice-info"><h4>Lemon Law</h4><p>Defective vehicles, buybacks</p></div><span class="chevron"><svg style="width: 18px; height: 18px;"><use href="#icon-chevron"/></svg></span></div>
 
                     <div class="section-header">
                         <span class="section-title">Referral Network</span>
@@ -1824,10 +1962,10 @@
                     </div>
 
                     <div class="referral-scroll">
-                        <div class="referral-card"><div class="referral-icon"><svg style="width: 24px; height: 24px; color: white;"><use href="#icon-family"/></svg></div><h4>Family Law</h4></div>
-                        <div class="referral-card"><div class="referral-icon"><svg style="width: 24px; height: 24px; color: white;"><use href="#icon-gavel"/></svg></div><h4>Criminal</h4></div>
-                        <div class="referral-card"><div class="referral-icon"><svg style="width: 24px; height: 24px; color: white;"><use href="#icon-work"/></svg></div><h4>Employment</h4></div>
-                        <div class="referral-card"><div class="referral-icon"><svg style="width: 24px; height: 24px; color: white;"><use href="#icon-home"/></svg></div><h4>Real Estate</h4></div>
+                        <div class="referral-card" onclick="showReferralInfo('Family Law')"><div class="referral-icon"><svg style="width: 24px; height: 24px; color: white;"><use href="#icon-family"/></svg></div><h4>Family Law</h4></div>
+                        <div class="referral-card" onclick="showReferralInfo('Criminal Defense')"><div class="referral-icon"><svg style="width: 24px; height: 24px; color: white;"><use href="#icon-gavel"/></svg></div><h4>Criminal</h4></div>
+                        <div class="referral-card" onclick="showReferralInfo('Employment Law')"><div class="referral-icon"><svg style="width: 24px; height: 24px; color: white;"><use href="#icon-work"/></svg></div><h4>Employment</h4></div>
+                        <div class="referral-card" onclick="showReferralInfo('Real Estate Law')"><div class="referral-icon"><svg style="width: 24px; height: 24px; color: white;"><use href="#icon-home"/></svg></div><h4>Real Estate</h4></div>
                     </div>
                     <div class="spacer"></div>
                 </div>
@@ -1982,9 +2120,9 @@
                 <!-- CONTACT SCREEN -->
                 <div class="screen contact-screen" id="screen-contact">
                     <div class="contact-header"><h1>Let's Talk</h1><p>Get your free consultation today</p></div>
-                    <div class="contact-card"><div class="contact-icon blue"><svg style="width: 28px; height: 28px; color: white;"><use href="#icon-phone"/></svg></div><div class="contact-info"><h4>Call Us Now</h4><p>Speak with our team directly</p></div><div class="contact-action blue">Call</div></div>
-                    <div class="contact-card"><div class="contact-icon green"><svg style="width: 28px; height: 28px; color: white;"><use href="#icon-chat"/></svg></div><div class="contact-info"><h4>Live Chat</h4><p>Instant responses, 24/7</p></div><div class="contact-action green">Chat</div></div>
-                    <div class="contact-card"><div class="contact-icon orange"><svg style="width: 28px; height: 28px; color: white;"><use href="#icon-document"/></svg></div><div class="contact-info"><h4>Request Callback</h4><p>We'll call you back in 1 hour</p></div><div class="contact-action orange">Request</div></div>
+                    <div class="contact-card" onclick="alert('📞 Call: (555) 123-4567\\n\\nOur team is available Mon-Fri 8am-6pm PST')"><div class="contact-icon blue"><svg style="width: 28px; height: 28px; color: white;"><use href="#icon-phone"/></svg></div><div class="contact-info"><h4>Call Us Now</h4><p>Speak with our team directly</p></div><div class="contact-action blue">Call</div></div>
+                    <div class="contact-card" onclick="showChatModal()"><div class="contact-icon green"><svg style="width: 28px; height: 28px; color: white;"><use href="#icon-chat"/></svg></div><div class="contact-info"><h4>Live Chat</h4><p>Instant responses, 24/7</p></div><div class="contact-action green">Chat</div></div>
+                    <div class="contact-card" onclick="alert('📋 Callback Requested!\\n\\nA member of our team will call you back within 1 hour during business hours.')"><div class="contact-icon orange"><svg style="width: 28px; height: 28px; color: white;"><use href="#icon-document"/></svg></div><div class="contact-info"><h4>Request Callback</h4><p>We\'ll call you back in 1 hour</p></div><div class="contact-action orange">Request</div></div>
                     <div class="office-card">
                         <h3><svg style="width: 20px; height: 20px; color: var(--primary);"><use href="#icon-location"/></svg> Office</h3>
                         <div class="office-row"><div class="office-row-icon"><svg style="width: 24px; height: 24px; color: var(--primary);"><use href="#icon-building"/></svg></div><div><h4>Los Angeles, California</h4><p>Serving all of Southern California</p></div></div>
@@ -2446,6 +2584,319 @@
         function skipOnboarding() {
             document.getElementById('onboarding').classList.add('hidden');
         }
+
+        // Modal functions
+        function showChatModal() {
+            document.getElementById('chat-modal').classList.add('active');
+        }
+
+        function hideChatModal() {
+            document.getElementById('chat-modal').classList.remove('active');
+        }
+
+        function showTrackCaseModal() {
+            document.getElementById('track-case-modal').classList.add('active');
+        }
+
+        function hideTrackCaseModal() {
+            document.getElementById('track-case-modal').classList.remove('active');
+        }
+
+        function submitCaseNumber() {
+            const caseNum = document.getElementById('case-number-input').value;
+            if (!caseNum) {
+                alert('Please enter your case number');
+                return;
+            }
+            alert('Case #' + caseNum + ' - Status: Under Review\\n\\nOur team is actively working on your case. You will receive an update within 24-48 hours.');
+            hideTrackCaseModal();
+            document.getElementById('case-number-input').value = '';
+        }
+
+        function showReferralInfo(areaName) {
+            alert('Referral Network: ' + areaName + '\\n\\nWe partner with trusted California attorneys who specialize in ' + areaName.toLowerCase() + '. Contact us to get connected with a qualified specialist.');
+        }
     </script>
+
+    <!-- CHAT MODAL -->
+    <div class="modal-overlay" id="chat-modal" onclick="hideChatModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="hideChatModal()">×</button>
+            <div class="modal-icon" style="background: linear-gradient(135deg, var(--success) 0%, #00E5A0 100%);">
+                <svg style="width: 32px; height: 32px; color: white;"><use href="#icon-chat"/></svg>
+            </div>
+            <h2>Live Chat</h2>
+            <p>Our team is available to chat with you during business hours.</p>
+            <div class="modal-hours">
+                <strong>Chat Hours:</strong><br>
+                Mon-Fri: 8am - 6pm PST<br>
+                Sat: 9am - 2pm PST
+            </div>
+            <button class="modal-btn primary" onclick="switchTab('contact'); hideChatModal();">Contact Us Instead</button>
+            <button class="modal-btn secondary" onclick="hideChatModal();">Maybe Later</button>
+        </div>
+    </div>
+
+    <!-- TRACK CASE MODAL -->
+    <div class="modal-overlay" id="track-case-modal" onclick="hideTrackCaseModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="hideTrackCaseModal()">×</button>
+            <div class="modal-icon" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);">
+                <svg style="width: 32px; height: 32px; color: white;"><use href="#icon-location"/></svg>
+            </div>
+            <h2>Track Your Case</h2>
+            <p>Enter your case number to check the current status.</p>
+            <input type="text" id="case-number-input" class="modal-input" placeholder="Case # (e.g., CL-2025-0001)">
+            <button class="modal-btn primary" onclick="submitCaseNumber()">Check Status</button>
+            <p class="modal-help">Don't have your case number? <a href="#" onclick="switchTab('contact'); hideTrackCaseModal();">Contact us</a></p>
+        </div>
+    </div>
+
+    <!-- PRACTICE AREA: Personal Injury -->
+    <div class="screen detail-screen" id="article-pa-personal-injury">
+        <button class="back-btn" onclick="hideArticle()">← Back</button>
+        <div class="detail-header">
+            <div class="detail-category" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);">⚡ We Handle Directly</div>
+            <h1 class="detail-title">Personal Injury</h1>
+            <div class="detail-meta">No Fee Unless We Win</div>
+        </div>
+        <div class="article-content">
+            <p>If you've been injured due to someone else's negligence, you deserve compensation. We fight aggressively to get you the maximum recovery.</p>
+
+            <h2>What We Handle</h2>
+            <ul>
+                <li>✅ Car, truck, and motorcycle accidents</li>
+                <li>✅ Pedestrian and bicycle accidents</li>
+                <li>✅ Dog bites and animal attacks</li>
+                <li>✅ Assault and battery injuries</li>
+                <li>✅ Wrongful death claims</li>
+            </ul>
+
+            <h2>Types of Compensation</h2>
+            <ul>
+                <li><strong>Medical expenses:</strong> Past, present, and future</li>
+                <li><strong>Lost wages:</strong> Time missed from work</li>
+                <li><strong>Pain & suffering:</strong> Physical and emotional</li>
+                <li><strong>Loss of enjoyment:</strong> Impact on quality of life</li>
+                <li><strong>Property damage:</strong> Vehicle and personal items</li>
+            </ul>
+
+            <div class="tip-box">
+                <p><strong>💡 Important:</strong> California law gives you 2 years from the date of injury to file a lawsuit. Don't wait—evidence can disappear and memories fade.</p>
+            </div>
+
+            <h2>Why Choose Us?</h2>
+            <ul>
+                <li>🏆 Millions recovered for clients</li>
+                <li>⚖️ Free initial consultation</li>
+                <li>💪 No fee unless we win your case</li>
+                <li>📱 24/7 availability for urgent cases</li>
+            </ul>
+        </div>
+
+        <div class="article-cta">
+            <h3>Injured? Let's Talk.</h3>
+            <p>Get your free case evaluation today</p>
+            <button onclick="switchTab('claim'); hideArticle();">Start My Claim Review</button>
+        </div>
+    </div>
+
+    <!-- PRACTICE AREA: Premises Liability -->
+    <div class="screen detail-screen" id="article-pa-premises-liability">
+        <button class="back-btn" onclick="hideArticle()">← Back</button>
+        <div class="detail-header">
+            <div class="detail-category" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);">⚡ We Handle Directly</div>
+            <h1 class="detail-title">Premises Liability</h1>
+            <div class="detail-meta">No Fee Unless We Win</div>
+        </div>
+        <div class="article-content">
+            <p>Property owners have a legal duty to maintain safe conditions. When they fail and you're injured, we hold them accountable.</p>
+
+            <h2>Common Cases We Handle</h2>
+            <ul>
+                <li>🏬 Slip and fall accidents</li>
+                <li>🚧 Trip hazards and uneven surfaces</li>
+                <li>💡 Inadequate lighting injuries</li>
+                <li>🏊 Swimming pool accidents</li>
+                <li>🔒 Negligent security incidents</li>
+                <li>🏗️ Construction site injuries</li>
+            </ul>
+
+            <h2>Who Can Be Held Liable?</h2>
+            <ul>
+                <li><strong>Property owners:</strong> Residential or commercial</li>
+                <li><strong>Business operators:</strong> Stores, restaurants, hotels</li>
+                <li><strong>Property managers:</strong> Apartments, condos</li>
+                <li><strong>Government entities:</strong> Public buildings, sidewalks</li>
+            </ul>
+
+            <div class="warning-box">
+                <p><strong>⚠️ Act Fast:</strong> Claims against government entities have shorter deadlines—often just 6 months. Contact us immediately if injured on public property.</p>
+            </div>
+
+            <h2>What You Need to Prove</h2>
+            <ul>
+                <li>The property had a dangerous condition</li>
+                <li>The owner knew or should have known</li>
+                <li>They failed to fix it or warn visitors</li>
+                <li>The condition caused your injury</li>
+            </ul>
+        </div>
+
+        <div class="article-cta">
+            <h3>Injured on someone's property?</h3>
+            <p>Free consultation—we'll review your case</p>
+            <button onclick="switchTab('claim'); hideArticle();">Start My Claim Review</button>
+        </div>
+    </div>
+
+    <!-- PRACTICE AREA: Property Damage -->
+    <div class="screen detail-screen" id="article-pa-property-damage">
+        <button class="back-btn" onclick="hideArticle()">← Back</button>
+        <div class="detail-header">
+            <div class="detail-category" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);">⚡ We Handle Directly</div>
+            <h1 class="detail-title">Property Damage</h1>
+            <div class="detail-meta">No Fee Unless We Win</div>
+        </div>
+        <div class="article-content">
+            <p>When your vehicle or property is damaged in an accident, insurance companies often try to pay as little as possible. We fight to get you fair compensation.</p>
+
+            <h2>Types of Claims</h2>
+            <ul>
+                <li>🚗 Vehicle damage from accidents</li>
+                <li>💥 Total loss claims</li>
+                <li>🔧 Diminished value claims</li>
+                <li>🏠 Personal property damage</li>
+                <li>📱 Electronics and valuables</li>
+            </ul>
+
+            <h2>What You Can Recover</h2>
+            <ul>
+                <li><strong>Repair costs:</strong> Full cost to fix your vehicle</li>
+                <li><strong>Replacement value:</strong> If your vehicle is totaled</li>
+                <li><strong>Rental car:</strong> While yours is being repaired</li>
+                <li><strong>Diminished value:</strong> Decrease in resale value</li>
+                <li><strong>Personal items:</strong> Things damaged in the accident</li>
+            </ul>
+
+            <div class="tip-box">
+                <p><strong>💡 Pro Tip:</strong> Don't accept the first offer from insurance. They typically lowball by 20-40%. Get your own estimate and let us negotiate.</p>
+            </div>
+
+            <h2>Insurance Tactics to Watch For</h2>
+            <ul>
+                <li>❌ Undervaluing your vehicle</li>
+                <li>❌ Using cheap aftermarket parts</li>
+                <li>❌ Denying rental car coverage</li>
+                <li>❌ Ignoring diminished value</li>
+            </ul>
+        </div>
+
+        <div class="article-cta">
+            <h3>Property damage dispute?</h3>
+            <p>We'll help you get fair compensation</p>
+            <button onclick="switchTab('claim'); hideArticle();">Start My Claim Review</button>
+        </div>
+    </div>
+
+    <!-- PRACTICE AREA: Insurance Bad Faith -->
+    <div class="screen detail-screen" id="article-pa-insurance-bad-faith">
+        <button class="back-btn" onclick="hideArticle()">← Back</button>
+        <div class="detail-header">
+            <div class="detail-category" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);">⚡ We Handle Directly</div>
+            <h1 class="detail-title">Insurance Bad Faith</h1>
+            <div class="detail-meta">No Fee Unless We Win</div>
+        </div>
+        <div class="article-content">
+            <p>Insurance companies have a legal duty to act in good faith. When they don't, you can sue them for bad faith and potentially recover additional damages.</p>
+
+            <h2>Signs of Bad Faith</h2>
+            <ul>
+                <li>🚫 Unreasonable claim denial</li>
+                <li>⏰ Excessive delays in processing</li>
+                <li>💰 Lowball settlement offers</li>
+                <li>📝 Failure to investigate properly</li>
+                <li>🔄 Constantly changing their position</li>
+                <li>⚠️ Misrepresenting policy terms</li>
+            </ul>
+
+            <h2>Your Rights Under California Law</h2>
+            <ul>
+                <li><strong>15 days:</strong> To acknowledge your claim</li>
+                <li><strong>40 days:</strong> To accept or deny after proof</li>
+                <li><strong>30 days:</strong> To pay after settlement</li>
+            </ul>
+
+            <div class="warning-box">
+                <p><strong>⚠️ Document Everything:</strong> Keep records of all communications with your insurer—emails, letters, phone call notes with dates and names.</p>
+            </div>
+
+            <h2>What You Can Recover</h2>
+            <ul>
+                <li>✅ Your original claim amount</li>
+                <li>✅ Emotional distress damages</li>
+                <li>✅ Attorney fees</li>
+                <li>✅ Punitive damages (in severe cases)</li>
+            </ul>
+        </div>
+
+        <div class="article-cta">
+            <h3>Insurance treating you unfairly?</h3>
+            <p>We'll hold them accountable</p>
+            <button onclick="switchTab('claim'); hideArticle();">Start My Claim Review</button>
+        </div>
+    </div>
+
+    <!-- PRACTICE AREA: Lemon Law -->
+    <div class="screen detail-screen" id="article-pa-lemon-law">
+        <button class="back-btn" onclick="hideArticle()">← Back</button>
+        <div class="detail-header">
+            <div class="detail-category" style="background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);">🍋 We Handle Directly</div>
+            <h1 class="detail-title">Lemon Law</h1>
+            <div class="detail-meta">Manufacturer Pays Our Fees</div>
+        </div>
+        <div class="article-content">
+            <p>California's Lemon Law is one of the strongest in the country. If you're stuck with a defective vehicle, we can help you get a refund or replacement.</p>
+
+            <h2>Does Your Vehicle Qualify?</h2>
+            <ul>
+                <li>🔧 <strong>2+ repair attempts</strong> for a safety defect, OR</li>
+                <li>🔧 <strong>4+ repair attempts</strong> for any substantial defect, OR</li>
+                <li>📅 Vehicle in shop <strong>30+ days</strong> total</li>
+            </ul>
+
+            <h2>Covered Vehicles</h2>
+            <ul>
+                <li>✅ New cars, trucks, SUVs</li>
+                <li>✅ Used vehicles under warranty</li>
+                <li>✅ Leased vehicles</li>
+                <li>✅ Certified pre-owned</li>
+                <li>✅ RVs and motorcycles</li>
+            </ul>
+
+            <div class="tip-box">
+                <p><strong>💡 Great News:</strong> Under California law, the manufacturer pays your attorney fees if you win. There's NO cost to you!</p>
+            </div>
+
+            <h2>What You Can Get</h2>
+            <h3>Buyback (Refund)</h3>
+            <ul>
+                <li>Full purchase price</li>
+                <li>Down payment returned</li>
+                <li>Monthly payments made</li>
+                <li>Registration and taxes</li>
+                <li>Incidental costs (towing, rentals)</li>
+            </ul>
+
+            <h3>OR Replacement</h3>
+            <p>A new vehicle of equal value that's acceptable to you.</p>
+        </div>
+
+        <div class="article-cta">
+            <h3>Stuck with a lemon?</h3>
+            <p>Find out if you qualify for a buyback</p>
+            <button onclick="switchTab('claim'); hideArticle();">Check My Vehicle</button>
+        </div>
+    </div>
 </body>
 </html>
