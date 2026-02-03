@@ -2470,24 +2470,36 @@
         }
 
         function goToStep(stepNum) {
+            console.log('goToStep called with:', stepNum);
             document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
-            document.getElementById('quiz-step-' + stepNum).classList.add('active');
+            const targetStep = document.getElementById('quiz-step-' + stepNum);
+            if (targetStep) {
+                targetStep.classList.add('active');
+                console.log('Step ' + stepNum + ' activated');
+            } else {
+                console.error('Could not find quiz-step-' + stepNum);
+            }
             document.getElementById('progress-fill').style.width = progressSteps[stepNum] + '%';
             currentQuizStep = stepNum;
             document.getElementById('screen-claim').scrollTop = 0;
         }
 
         function selectAndAdvance(element, value, nextStep) {
+            console.log('selectAndAdvance called:', value, 'next:', nextStep, 'currentStep:', currentQuizStep);
             // Highlight selected option briefly
             const parentStep = element.closest('.quiz-step');
-            parentStep.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+            if (parentStep) {
+                parentStep.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+            }
             element.classList.add('selected');
 
             // Store answer
             quizAnswers['step' + currentQuizStep] = value;
+            console.log('Stored answer:', quizAnswers);
 
             // Advance after short delay
             setTimeout(() => {
+                console.log('Advancing to step:', nextStep);
                 goToStep(nextStep);
             }, 200);
         }
