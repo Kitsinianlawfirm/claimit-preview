@@ -127,6 +127,61 @@
         .status-bar.light { color: white; }
         .status-bar.dark { color: #1a1a1a; }
 
+        .status-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Sign-In Button */
+        .signin-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255,255,255,0.2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            padding: 0;
+        }
+
+        .signin-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+
+        .signin-btn svg {
+            width: 16px;
+            height: 16px;
+            color: inherit;
+        }
+
+        .status-bar.dark .signin-btn {
+            background: rgba(0,0,0,0.1);
+        }
+
+        .status-bar.dark .signin-btn:hover {
+            background: rgba(0,0,0,0.15);
+        }
+
+        .signin-btn.signed-in {
+            background: var(--primary);
+            color: white !important;
+        }
+
+        .signin-btn.signed-in:hover {
+            background: var(--primary-dark);
+        }
+
+        .signin-btn .user-initial {
+            font-size: 12px;
+            font-weight: 700;
+            color: white;
+        }
+
         /* Screen Container */
         .screen-container {
             position: absolute;
@@ -584,7 +639,6 @@
 
         .practice-card * {
             pointer-events: none;
-            border: 1px solid var(--border-color);
             transition: all 0.2s ease;
             cursor: pointer;
         }
@@ -725,7 +779,6 @@
 
         .resource-card * {
             pointer-events: none;
-            border: 1px solid var(--border-color);
             transition: all 0.2s ease;
             cursor: pointer;
         }
@@ -1617,6 +1670,323 @@
             text-decoration: none;
             font-weight: 600;
         }
+
+        /* Account Screen Styles */
+        .account-screen {
+            background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 35%, var(--page-bg) 35%);
+        }
+
+        .account-header {
+            padding: 16px 20px 40px;
+        }
+
+        .account-header h1 {
+            color: white;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .account-header p {
+            color: rgba(255,255,255,0.85);
+            font-size: 15px;
+        }
+
+        .signin-prompt {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .signin-prompt-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .signin-prompt-icon svg {
+            width: 40px;
+            height: 40px;
+            color: white;
+        }
+
+        .signin-prompt h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .signin-prompt p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .signin-prompt .btn-signin {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+        }
+
+        .cases-list {
+            padding: 20px;
+        }
+
+        .cases-list.hidden {
+            display: none;
+        }
+
+        .user-profile-card {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            margin: -20px 20px 20px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .user-info h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .user-info p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .user-profile-card .signout-link {
+            margin-left: auto;
+            color: var(--text-muted);
+            font-size: 13px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .cases-section-header {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            padding: 0 4px;
+        }
+
+        .case-card {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .case-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .case-type {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .case-date {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .case-status-badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .case-status-badge.submitted {
+            background: #E5E7EB;
+            color: #4B5563;
+        }
+
+        .case-status-badge.under-review {
+            background: #DBEAFE;
+            color: #1D4ED8;
+        }
+
+        .case-status-badge.qualified {
+            background: #D1FAE5;
+            color: #059669;
+        }
+
+        .case-status-badge.matched {
+            background: #FEF3C7;
+            color: #D97706;
+        }
+
+        .case-status-badge.retained {
+            background: #D1FAE5;
+            color: #059669;
+        }
+
+        .case-progress {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 12px;
+        }
+
+        .case-progress-step {
+            flex: 1;
+            height: 4px;
+            background: #E5E7EB;
+            border-radius: 2px;
+        }
+
+        .case-progress-step.complete {
+            background: var(--success);
+        }
+
+        .case-progress-step.current {
+            background: var(--primary);
+        }
+
+        .case-status-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .attorney-card {
+            background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
+            border-radius: 12px;
+            padding: 12px;
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .attorney-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--success) 0%, #00E5A0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .attorney-info h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .attorney-info p {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .attorney-contact {
+            margin-left: auto;
+            display: flex;
+            gap: 8px;
+        }
+
+        .attorney-contact-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: white;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .no-cases-message {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+        }
+
+        .no-cases-message svg {
+            width: 48px;
+            height: 48px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .no-cases-message h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .no-cases-message p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .no-cases-message .btn-start-claim {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
     </style>
 </head>
 <body>
@@ -1812,6 +2182,21 @@
             <symbol id="icon-alarm" viewBox="0 0 24 24">
                 <path d="M22 5.72l-4.6-3.86-1.29 1.53 4.6 3.86L22 5.72zM7.88 3.39L6.6 1.86 2 5.71l1.29 1.53 4.59-3.85zM12.5 8H11v6l4.75 2.85.75-1.23-4-2.37V8zM12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z" fill="currentColor"/>
             </symbol>
+
+            <!-- User/Account -->
+            <symbol id="icon-user" viewBox="0 0 24 24">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="currentColor"/>
+            </symbol>
+
+            <!-- Checkmark Circle -->
+            <symbol id="icon-check-circle" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/>
+            </symbol>
+
+            <!-- Briefcase/Case -->
+            <symbol id="icon-briefcase" viewBox="0 0 24 24">
+                <path d="M20 7h-4V5c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zM10 5h4v2h-4V5z" fill="currentColor"/>
+            </symbol>
         </defs>
     </svg>
 
@@ -1948,7 +2333,12 @@
 
             <div class="status-bar light" id="status-bar">
                 <span>9:41</span>
-                <span>📶 📡 🔋</span>
+                <div class="status-right">
+                    <button class="signin-btn" id="signin-btn" onclick="toggleSignIn()">
+                        <svg><use href="#icon-user"/></svg>
+                    </button>
+                    <span>📶 📡 🔋</span>
+                </div>
             </div>
 
             <div class="screen-container">
@@ -1975,10 +2365,9 @@
                         <span class="section-title">Quick Actions</span>
                     </div>
                     <div class="quick-actions">
-                        <div class="quick-action" onclick="switchTab('contact')"><div class="quick-action-icon"><svg style="width: 26px; height: 26px; color: white;"><use href="#icon-phone"/></svg></div><h4>Call Now</h4><p>Talk to us</p></div>
-                        <div class="quick-action" onclick="showChatModal()"><div class="quick-action-icon"><svg style="width: 26px; height: 26px; color: white;"><use href="#icon-chat"/></svg></div><h4>Live Chat</h4><p>Instant help</p></div>
+                        <div class="quick-action" onclick="switchTab('claim')"><div class="quick-action-icon"><svg style="width: 26px; height: 26px; color: white;"><use href="#icon-lightning"/></svg></div><h4>New Claim</h4><p>Start review</p></div>
                         <div class="quick-action" onclick="switchTab('learn')"><div class="quick-action-icon"><svg style="width: 26px; height: 26px; color: white;"><use href="#icon-book"/></svg></div><h4>Guides</h4><p>Free resources</p></div>
-                        <div class="quick-action" onclick="showTrackCaseModal()"><div class="quick-action-icon"><svg style="width: 26px; height: 26px; color: white;"><use href="#icon-location"/></svg></div><h4>Track Case</h4><p>Status updates</p></div>
+                        <div class="quick-action" onclick="switchTab('account')"><div class="quick-action-icon"><svg style="width: 26px; height: 26px; color: white;"><use href="#icon-briefcase"/></svg></div><h4>My Cases</h4><p>Track status</p></div>
                     </div>
 
                     <div class="section-header">
@@ -2153,17 +2542,41 @@
                     <div class="spacer"></div>
                 </div>
 
-                <!-- CONTACT SCREEN -->
-                <div class="screen contact-screen" id="screen-contact">
-                    <div class="contact-header"><h1>Let's Talk</h1><p>Get your free consultation today</p></div>
-                    <div class="contact-card" onclick="alert('📞 Call: (555) 123-4567\\n\\nOur team is available Mon-Fri 8am-6pm PST')"><div class="contact-icon blue"><svg style="width: 28px; height: 28px; color: white;"><use href="#icon-phone"/></svg></div><div class="contact-info"><h4>Call Us Now</h4><p>Speak with our team directly</p></div><div class="contact-action blue">Call</div></div>
-                    <div class="contact-card" onclick="showChatModal()"><div class="contact-icon green"><svg style="width: 28px; height: 28px; color: white;"><use href="#icon-chat"/></svg></div><div class="contact-info"><h4>Live Chat</h4><p>Instant responses, 24/7</p></div><div class="contact-action green">Chat</div></div>
-                    <div class="contact-card" onclick="alert('📋 Callback Requested!\\n\\nA member of our team will call you back within 1 hour during business hours.')"><div class="contact-icon orange"><svg style="width: 28px; height: 28px; color: white;"><use href="#icon-document"/></svg></div><div class="contact-info"><h4>Request Callback</h4><p>We\'ll call you back in 1 hour</p></div><div class="contact-action orange">Request</div></div>
-                    <div class="office-card">
-                        <h3><svg style="width: 20px; height: 20px; color: var(--primary);"><use href="#icon-location"/></svg> Office</h3>
-                        <div class="office-row"><div class="office-row-icon"><svg style="width: 24px; height: 24px; color: var(--primary);"><use href="#icon-building"/></svg></div><div><h4>Los Angeles, California</h4><p>Serving all of Southern California</p></div></div>
-                        <div class="office-row"><div class="office-row-icon"><svg style="width: 24px; height: 24px; color: var(--primary);"><use href="#icon-hours"/></svg></div><div><h4>Available 24/7</h4><p>For urgent matters anytime</p></div></div>
-                        <div class="office-row"><div class="office-row-icon"><svg style="width: 24px; height: 24px; color: var(--primary);"><use href="#icon-lightning"/></svg></div><div><h4>Response Time</h4><p>Usually within 1 hour</p></div></div>
+                <!-- ACCOUNT SCREEN -->
+                <div class="screen account-screen" id="screen-account">
+                    <div class="account-header">
+                        <h1>My Cases</h1>
+                        <p>Track your claim evaluations</p>
+                    </div>
+
+                    <!-- If not signed in: prompt to sign in -->
+                    <div class="signin-prompt" id="signin-prompt">
+                        <div class="signin-prompt-icon">
+                            <svg><use href="#icon-user"/></svg>
+                        </div>
+                        <h2>Sign In to View Your Cases</h2>
+                        <p>Track the status of your submitted claims and see which attorney has been assigned to your case.</p>
+                        <button class="btn-signin" onclick="showSignInModal()">
+                            <svg style="width: 18px; height: 18px;"><use href="#icon-user"/></svg>
+                            Sign In
+                        </button>
+                    </div>
+
+                    <!-- If signed in: show user profile and cases -->
+                    <div class="cases-list hidden" id="cases-list">
+                        <div class="user-profile-card" id="user-profile-card">
+                            <div class="user-avatar" id="user-avatar">J</div>
+                            <div class="user-info">
+                                <h3 id="user-name">John Doe</h3>
+                                <p id="user-phone">(555) 123-4567</p>
+                            </div>
+                            <span class="signout-link" onclick="signOut()">Sign Out</span>
+                        </div>
+
+                        <div class="cases-section-header">Your Cases</div>
+                        <div id="cases-container">
+                            <!-- Cases will be dynamically inserted here -->
+                        </div>
                     </div>
                     <div class="spacer"></div>
                 </div>
@@ -2448,7 +2861,7 @@
                 <div class="tab active" id="tab-home" onclick="switchTab('home')"><div class="tab-icon"><svg style="width: 24px; height: 24px;"><use href="#icon-home"/></svg></div>Home</div>
                 <div class="tab" id="tab-claim" onclick="switchTab('claim')"><div class="tab-icon"><svg style="width: 24px; height: 24px;"><use href="#icon-lightning"/></svg></div>Claim</div>
                 <div class="tab" id="tab-learn" onclick="switchTab('learn')"><div class="tab-icon"><svg style="width: 24px; height: 24px;"><use href="#icon-book"/></svg></div>Learn</div>
-                <div class="tab" id="tab-contact" onclick="switchTab('contact')"><div class="tab-icon"><svg style="width: 24px; height: 24px;"><use href="#icon-chat"/></svg></div>Contact</div>
+                <div class="tab" id="tab-account" onclick="switchTab('account')"><div class="tab-icon"><svg style="width: 24px; height: 24px;"><use href="#icon-user"/></svg></div>Account</div>
             </div>
         </div>
     </div>
@@ -2460,6 +2873,35 @@
         let quizAnswers = {};
         let currentOnboardingScreen = 1;
         let selectedOnboardingOption = null;
+
+        // User auth state
+        let isSignedIn = false;
+        let currentUser = null;
+
+        // Mock cases data (demo)
+        let userCases = [];
+
+        // Mock data for demo - cases from a returning user
+        const mockCases = [
+            {
+                id: 1,
+                type: 'Car Accident',
+                submitted: '2025-01-28',
+                status: 'retained',
+                attorney: {
+                    name: 'Sarah Mitchell',
+                    phone: '(213) 555-0123',
+                    email: 'smitchell@kitsinian.com'
+                }
+            },
+            {
+                id: 2,
+                type: 'Insurance Bad Faith',
+                submitted: '2025-02-01',
+                status: 'under-review',
+                attorney: null
+            }
+        ];
 
         const progressSteps = {
             1: 16,
@@ -2484,6 +2926,11 @@
 
             document.getElementById('screen-' + tabName).scrollTop = 0;
             currentScreen = tabName;
+
+            // Update account UI when switching to account tab
+            if (tabName === 'account') {
+                updateAccountUI();
+            }
         }
 
         function showArticle(articleId) {
@@ -2559,6 +3006,43 @@
             quizAnswers.description = description;
 
             console.log('Lead submitted:', quizAnswers);
+
+            // Get case type from step 1 answer
+            const caseTypeMap = {
+                'car-accident': 'Car Accident',
+                'injury': 'Personal Injury',
+                'slip-fall': 'Slip & Fall',
+                'insurance': 'Insurance Dispute',
+                'lemon': 'Lemon Law',
+                'property': 'Property Damage',
+                'other': 'Other'
+            };
+            const caseType = caseTypeMap[quizAnswers.step1] || 'General Inquiry';
+
+            // Create new case
+            const newCase = {
+                id: Date.now(),
+                type: caseType,
+                submitted: new Date().toISOString().split('T')[0],
+                status: 'submitted',
+                attorney: null
+            };
+
+            // Add to user cases
+            userCases.unshift(newCase);
+
+            // Auto sign in the user if not already signed in
+            if (!isSignedIn) {
+                currentUser = {
+                    name: name,
+                    phone: phone,
+                    email: email
+                };
+                isSignedIn = true;
+                updateSignInButton();
+            }
+
+            console.log('Case created:', newCase);
 
             // Go to success step
             goToStep(6);
@@ -2661,32 +3145,192 @@
             }, 100);
         }
 
-        // Modal functions
-        function showChatModal() {
-            document.getElementById('chat-modal').classList.add('active');
+        // ==================== AUTH & ACCOUNT FUNCTIONS ====================
+
+        function toggleSignIn() {
+            if (isSignedIn) {
+                // Show account tab when signed in
+                switchTab('account');
+            } else {
+                showSignInModal();
+            }
         }
 
-        function hideChatModal() {
-            document.getElementById('chat-modal').classList.remove('active');
+        function showSignInModal() {
+            document.getElementById('signin-modal').classList.add('active');
         }
 
-        function showTrackCaseModal() {
-            document.getElementById('track-case-modal').classList.add('active');
+        function hideSignInModal() {
+            document.getElementById('signin-modal').classList.remove('active');
+            document.getElementById('signin-phone').value = '';
+            document.getElementById('signin-email').value = '';
         }
 
-        function hideTrackCaseModal() {
-            document.getElementById('track-case-modal').classList.remove('active');
-        }
+        function signIn() {
+            const phone = document.getElementById('signin-phone').value;
+            const email = document.getElementById('signin-email').value;
 
-        function submitCaseNumber() {
-            const caseNum = document.getElementById('case-number-input').value;
-            if (!caseNum) {
-                alert('Please enter your case number');
+            if (!phone) {
+                alert('Please enter your phone number');
                 return;
             }
-            alert('Case #' + caseNum + ' - Status: Under Review\\n\\nOur team is actively working on your case. You will receive an update within 24-48 hours.');
-            hideTrackCaseModal();
-            document.getElementById('case-number-input').value = '';
+
+            // Demo: create mock user
+            currentUser = {
+                name: 'Demo User',
+                phone: phone,
+                email: email || 'demo@example.com'
+            };
+
+            // Load mock cases for demo
+            userCases = [...mockCases];
+
+            isSignedIn = true;
+            hideSignInModal();
+            updateSignInButton();
+            updateAccountUI();
+        }
+
+        function signOut() {
+            isSignedIn = false;
+            currentUser = null;
+            userCases = [];
+            updateSignInButton();
+            updateAccountUI();
+        }
+
+        function updateSignInButton() {
+            const btn = document.getElementById('signin-btn');
+            if (isSignedIn && currentUser) {
+                btn.classList.add('signed-in');
+                const initial = currentUser.name.charAt(0).toUpperCase();
+                btn.innerHTML = '<span class="user-initial">' + initial + '</span>';
+            } else {
+                btn.classList.remove('signed-in');
+                btn.innerHTML = '<svg><use href="#icon-user"/></svg>';
+            }
+        }
+
+        function updateAccountUI() {
+            const signinPrompt = document.getElementById('signin-prompt');
+            const casesList = document.getElementById('cases-list');
+            const casesContainer = document.getElementById('cases-container');
+
+            if (isSignedIn && currentUser) {
+                signinPrompt.style.display = 'none';
+                casesList.classList.remove('hidden');
+
+                // Update user profile
+                document.getElementById('user-avatar').textContent = currentUser.name.charAt(0).toUpperCase();
+                document.getElementById('user-name').textContent = currentUser.name;
+                document.getElementById('user-phone').textContent = currentUser.phone;
+
+                // Render cases
+                renderCases(casesContainer);
+            } else {
+                signinPrompt.style.display = 'block';
+                casesList.classList.add('hidden');
+            }
+        }
+
+        function renderCases(container) {
+            if (userCases.length === 0) {
+                container.innerHTML = `
+                    <div class="no-cases-message">
+                        <svg><use href="#icon-briefcase"/></svg>
+                        <h3>No Cases Yet</h3>
+                        <p>Submit your first claim to start tracking your case here.</p>
+                        <button class="btn-start-claim" onclick="switchTab('claim')">
+                            <svg style="width: 16px; height: 16px;"><use href="#icon-lightning"/></svg>
+                            Start a Claim
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            const statusConfig = {
+                'submitted': {
+                    label: 'Submitted',
+                    text: 'We received your information and will review it shortly.',
+                    progress: 1
+                },
+                'under-review': {
+                    label: 'Under Review',
+                    text: 'Our team is reviewing your case details.',
+                    progress: 2
+                },
+                'qualified': {
+                    label: 'Qualified',
+                    text: 'Good news! Your case qualifies for representation.',
+                    progress: 3
+                },
+                'matched': {
+                    label: 'Matched',
+                    text: 'You have been matched with an attorney.',
+                    progress: 4
+                },
+                'retained': {
+                    label: 'Retained',
+                    text: 'Your attorney has been assigned and will contact you.',
+                    progress: 5
+                }
+            };
+
+            let html = '';
+            userCases.forEach(caseItem => {
+                const config = statusConfig[caseItem.status] || statusConfig['submitted'];
+
+                // Format date
+                const date = new Date(caseItem.submitted);
+                const formattedDate = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+                // Progress steps
+                let progressHtml = '';
+                for (let i = 1; i <= 5; i++) {
+                    let stepClass = '';
+                    if (i < config.progress) stepClass = 'complete';
+                    else if (i === config.progress) stepClass = 'current';
+                    progressHtml += '<div class="case-progress-step ' + stepClass + '"></div>';
+                }
+
+                // Attorney card if matched/retained
+                let attorneyHtml = '';
+                if (caseItem.attorney && (caseItem.status === 'matched' || caseItem.status === 'retained')) {
+                    const attInitial = caseItem.attorney.name.split(' ').map(n => n[0]).join('');
+                    attorneyHtml = `
+                        <div class="attorney-card">
+                            <div class="attorney-avatar">${attInitial}</div>
+                            <div class="attorney-info">
+                                <h4>${caseItem.attorney.name}</h4>
+                                <p>Your Attorney</p>
+                            </div>
+                            <div class="attorney-contact">
+                                <button class="attorney-contact-btn" onclick="alert('Calling ${caseItem.attorney.phone}')">
+                                    <svg style="width: 16px; height: 16px;"><use href="#icon-phone"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                html += `
+                    <div class="case-card">
+                        <div class="case-card-header">
+                            <div>
+                                <div class="case-type">${caseItem.type}</div>
+                                <div class="case-date">Submitted ${formattedDate}</div>
+                            </div>
+                            <span class="case-status-badge ${caseItem.status}">${config.label}</span>
+                        </div>
+                        <div class="case-progress">${progressHtml}</div>
+                        <div class="case-status-text">${config.text}</div>
+                        ${attorneyHtml}
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
         }
 
         function showReferralInfo(areaName) {
@@ -2694,37 +3338,19 @@
         }
     </script>
 
-    <!-- CHAT MODAL -->
-    <div class="modal-overlay" id="chat-modal" onclick="hideChatModal()">
+    <!-- SIGN-IN MODAL -->
+    <div class="modal-overlay" id="signin-modal" onclick="hideSignInModal()">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="hideChatModal()">×</button>
-            <div class="modal-icon" style="background: linear-gradient(135deg, var(--success) 0%, #00E5A0 100%);">
-                <svg style="width: 32px; height: 32px; color: white;"><use href="#icon-chat"/></svg>
-            </div>
-            <h2>Live Chat</h2>
-            <p>Our team is available to chat with you during business hours.</p>
-            <div class="modal-hours">
-                <strong>Chat Hours:</strong><br>
-                Mon-Fri: 8am - 6pm PST<br>
-                Sat: 9am - 2pm PST
-            </div>
-            <button class="modal-btn primary" onclick="switchTab('contact'); hideChatModal();">Contact Us Instead</button>
-            <button class="modal-btn secondary" onclick="hideChatModal();">Maybe Later</button>
-        </div>
-    </div>
-
-    <!-- TRACK CASE MODAL -->
-    <div class="modal-overlay" id="track-case-modal" onclick="hideTrackCaseModal()">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="hideTrackCaseModal()">×</button>
+            <button class="modal-close" onclick="hideSignInModal()">×</button>
             <div class="modal-icon" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);">
-                <svg style="width: 32px; height: 32px; color: white;"><use href="#icon-location"/></svg>
+                <svg style="width: 32px; height: 32px; color: white;"><use href="#icon-user"/></svg>
             </div>
-            <h2>Track Your Case</h2>
-            <p>Enter your case number to check the current status.</p>
-            <input type="text" id="case-number-input" class="modal-input" placeholder="Case # (e.g., CL-2025-0001)">
-            <button class="modal-btn primary" onclick="submitCaseNumber()">Check Status</button>
-            <p class="modal-help">Don't have your case number? <a href="#" onclick="switchTab('contact'); hideTrackCaseModal();">Contact us</a></p>
+            <h2>Sign In</h2>
+            <p>Access your submitted cases and track their status.</p>
+            <input type="tel" id="signin-phone" class="modal-input" placeholder="Phone Number">
+            <input type="email" id="signin-email" class="modal-input" placeholder="Email (optional)">
+            <button class="modal-btn primary" onclick="signIn()">Sign In</button>
+            <p class="modal-help">New here? Submit a claim to create an account automatically.</p>
         </div>
     </div>
 
